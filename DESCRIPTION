@@ -1,5 +1,5 @@
-Package: flowers
-Title: What the Package Does (One Line, Title Case)
+Package: bbggplots
+Title: BBG Cherry Tree Blossom Data
 Version: 0.0.0.9000
 Authors@R: 
     person(given = "Eric",
@@ -7,7 +7,7 @@ Authors@R:
            role = c("aut", "cre"),
            email = "erictleung@outlook.com",
            comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
+Description: Data tracking bloom status of cherry trees at the Brooklyn Botanical Garden in New York City.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
