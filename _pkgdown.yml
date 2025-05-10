@@ -1,0 +1,19 @@
+url: https://erictleung.com/bbggplots, https://github.com/erictleung/bbggplots
+
+template:
+  bootstrap: 5
+  params:
+    bootswatch: flatly
+    ganalytics: UA-66130577-1
+
+navbar:
+  title: "bbggplots"
+
+reference:
+  - title: Blossom data
+    contents:
+    - bggdata
+  - title: Supplemental data
+    contents:
+    - treepositions
+    - bbgcolors
