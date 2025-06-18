@@ -11,9 +11,61 @@ knitr::opts_chunk$set(
 )
 ```
 
-# flowers
+# bbggplots
 
 <!-- badges: start -->
+[![R build status](https://github.com/erictleung/bbggplots/workflows/R-CMD-check/badge.svg)](https://github.com/erictleung/bbggplots/actions)
+[![License CC0](https://img.shields.io/cran/l/pixarfilms)](https://img.shields.io/cran/l/pixarfilms)
+[![Project Type Toy Badge](https://img.shields.io/badge/project%20type-toy-blue)](https://project-types.github.io/#toy)
 <!-- badges: end -->
 
-The goal of flowers is to provide a color palette based on flowers.
+> R data package to explore the cheery blossoms at the Brooklyn Botanic Garden
+
+## Installation
+
+You can install the development version of `bbggplots` from GitHub with:
+
+```{r, eval = FALSE}
+remotes::install_github("erictleung/bbggplots")
+```
+
+## Example
+
+```{r}
+library(bbggplots)
+bbgdata
+```
+
+## Documentation
+
+You can find information about the data sets and more
+[here](https://erictleung.com/bbggplots/).
+And , a list of vignettes showcasing some analyses you can do with this package
+can be found [here](https://erictleung.com/bbggplots/articles/).
+
+
+## Data
+
+This data here within is not constrained to exploring just within R.
+
+Here are direct links to each data set.
+
+```
+https://raw.githubusercontent.com/erictleung/bbggplots/main/data-raw/records.csv
+```
+
+## Feedback
+
+If you have any feedback or suggestions on other data that can be added, please
+file an issue [here](https://github.com/erictleung/bbggplots/issues).
+
+
+## Code of Conduct
+
+Please note that the {bbggplots} project is released with a
+[Contributor Code of Conduct](https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html).
+By contributing to this project, you agree to abide by its terms.
+
+## Acknowledgments
+
+- [Brooklyn Botanic Garden](https://bbg.org/)
