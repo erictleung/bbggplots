@@ -112,3 +112,4 @@ message(glue("Current date: {date} <-- Should be last date"))
 
 write_csv(x = records, file = data_file)
 
+usethis::use_data(records, overwrite = TRUE)
