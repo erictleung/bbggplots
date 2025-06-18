@@ -9,7 +9,7 @@ Authors@R:
            comment = c(ORCID = "0000-0002-8724-1872"))
 Description: Data tracking bloom status of cherry trees at the Brooklyn
     Botanical Garden in New York City.
-License: MIT + file LICENSE
+License: file LICENSE
 License: CC0
 URL: https://github.com/erictleung/bbggplots,
     https://erictleung.com/bbggplots/
