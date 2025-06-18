@@ -31,11 +31,12 @@ NULL
 #' "bloom2", "peak", "peak_bloom",
 #' "bloom3", "post", "postpeak_bloom".
 #'
+#' @export
 #' @param name string for what color information to gather
 #'
 #' @source \url{https://www.bbg.org/collections/cherries}
 #' @examples
-#' bbgcolors
+#' bbgcolors("all")
 bbgcolors <- function(name) {
   # Colors for plotting
   prebloom <- "#CFC673"

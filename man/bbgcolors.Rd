@@ -23,5 +23,5 @@ Values can be any of the following: "all",
 "bloom3", "post", "postpeak_bloom".
 }
 \examples{
-bbgcolors
+bbgcolors("all")
 }
