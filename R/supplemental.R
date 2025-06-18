@@ -37,6 +37,10 @@ NULL
 #' @source \url{https://www.bbg.org/collections/cherries}
 #' @examples
 #' bbgcolors("all")
+#'
+#' library(ggplot2)
+#' ggplot(iris, aes(Sepal.Length, Sepal.Width)) +
+#'     geom_point(color = bbgcolors("first"))
 bbgcolors <- function(name) {
   # Colors for plotting
   prebloom <- "#CFC673"
