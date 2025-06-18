@@ -12,7 +12,7 @@ navbar:
 reference:
   - title: Blossom data
     contents:
-    - bggdata
+    - bbgdata
   - title: Supplemental data
     contents:
     - treepositions
