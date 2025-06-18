@@ -16,11 +16,14 @@ bbgcolors(name)
 Color palette used on the official Brooklyn Botanic Gardens website tracker.
 }
 \details{
-Values can be any of the following: "all",
-"bloom0", "pre", "prebloom",
-"bloom1", "first", "first_bloom",
-"bloom2", "peak", "peak_bloom",
-"bloom3", "post", "postpeak_bloom".
+Values can be any of the following:
+\describe{
+\item{all}{"all"}
+\item{Pre-bloom}{"bloom0", "pre", "prebloom"}
+\item{First bloom}{"bloom1", "first", "first_bloom"}
+\item{Peak bloom}{"bloom2", "peak", "peak_bloom"}
+\item{Post-peak bloom}{"bloom3", "post", "postpeak_bloom"}
+}
 }
 \examples{
 bbgcolors("all")
