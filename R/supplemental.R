@@ -25,6 +25,14 @@ NULL
 #'
 #' Color palette used on the official Brooklyn Botanic Gardens website tracker.
 #'
+#' Values can be any of the following: "all",
+#' "bloom0", "pre", "prebloom",
+#' "bloom1", "first", "first_bloom",
+#' "bloom2", "peak", "peak_bloom",
+#' "bloom3", "post", "postpeak_bloom".
+#'
+#' @param name string for what color information to gather
+#'
 #' @source \url{https://www.bbg.org/collections/cherries}
 #' @examples
 #' bbgcolors
