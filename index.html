@@ -53,11 +53,70 @@
 </nav><div class="container template-home">
 <div class="row">
   <main id="main" class="col-md-9"><div class="section level1">
-<div class="page-header"><h1 id="flowers">flowers<a class="anchor" aria-label="anchor" href="#flowers"></a>
+<div class="page-header"><h1 id="bbggplots">bbggplots<a class="anchor" aria-label="anchor" href="#bbggplots"></a>
 </h1></div>
 <!-- badges: start -->
-<!-- badges: end -->
-<p>The goal of flowers is to provide a color palette based on flowers.</p>
+
+<blockquote>
+<p>R data package to explore the cheery blossoms at the Brooklyn Botanic Garden</p>
+</blockquote>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
+<p>You can install the development version of <code>bbggplots</code> from GitHub with:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"erictleung/bbggplots"</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
+</h2>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/erictleung/bbggplots" class="external-link">bbggplots</a></span><span class="op">)</span></span>
+<span><span class="va">bbgdata</span></span>
+<span><span class="co">#&gt; # A tibble: 3,328 × 5</span></span>
+<span><span class="co">#&gt;    date       alt                                  tree                id bloom </span></span>
+<span><span class="co">#&gt;    &lt;date&gt;     &lt;chr&gt;                                &lt;chr&gt;            &lt;dbl&gt; &lt;chr&gt; </span></span>
+<span><span class="co">#&gt;  1 2025-04-14 Prunus ‘Taki-nioi’                   taki_nioi          163 First…</span></span>
+<span><span class="co">#&gt;  2 2025-04-14 Prunus pendula ‘Pendula Rosea ’      pendula            128 Peak …</span></span>
+<span><span class="co">#&gt;  3 2025-04-14 Prunus pendula ‘Pendula Plena Rosea’ yae_beni_shidare   126 Peak …</span></span>
+<span><span class="co">#&gt;  4 2025-04-14 Prunus × sieboldii                   sieboldii          160 First…</span></span>
+<span><span class="co">#&gt;  5 2025-04-14 Prunus ‘Hata-zakura’                 hatazakura         106 First…</span></span>
+<span><span class="co">#&gt;  6 2025-04-14 Prunus ‘Ariake’                      ariake             154 First…</span></span>
+<span><span class="co">#&gt;  7 2025-04-14 Prunus ‘Ukon’                        ukon               162 Prebl…</span></span>
+<span><span class="co">#&gt;  8 2025-04-14 Prunus × sieboldii                   sieboldii          161 First…</span></span>
+<span><span class="co">#&gt;  9 2025-04-14 Prunus ‘Fudan-zakura’                fudan_zakura       107 Post-…</span></span>
+<span><span class="co">#&gt; 10 2025-04-14 Prunus ‘Shirotae’                    shirotae           153 First…</span></span>
+<span><span class="co">#&gt; # ℹ 3,318 more rows</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="documentation">Documentation<a class="anchor" aria-label="anchor" href="#documentation"></a>
+</h2>
+<p>You can find information about the data sets and more <a href="https://erictleung.com/bbggplots/" class="external-link">here</a>. And , a list of vignettes showcasing some analyses you can do with this package can be found <a href="https://erictleung.com/bbggplots/articles/" class="external-link">here</a>.</p>
+</div>
+<div class="section level2">
+<h2 id="data">Data<a class="anchor" aria-label="anchor" href="#data"></a>
+</h2>
+<p>This data here within is not constrained to exploring just within R.</p>
+<p>Here are direct links to each data set.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>https<span class="sc">:</span><span class="er">//</span>raw.githubusercontent.com<span class="sc">/</span>erictleung<span class="sc">/</span>bbggplots<span class="sc">/</span>main<span class="sc">/</span>data<span class="sc">-</span>raw<span class="sc">/</span>bbg_tree_bloom_2025.csv</span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="feedback">Feedback<a class="anchor" aria-label="anchor" href="#feedback"></a>
+</h2>
+<p>If you have any feedback or suggestions on other data that can be added, please file an issue <a href="https://github.com/erictleung/bbggplots/issues" class="external-link">here</a>.</p>
+</div>
+<div class="section level2">
+<h2 id="code-of-conduct">Code of Conduct<a class="anchor" aria-label="anchor" href="#code-of-conduct"></a>
+</h2>
+<p>Please note that the {bbggplots} project is released with a <a href="https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html" class="external-link">Contributor Code of Conduct</a>. By contributing to this project, you agree to abide by its terms.</p>
+</div>
+<div class="section level2">
+<h2 id="acknowledgments">Acknowledgments<a class="anchor" aria-label="anchor" href="#acknowledgments"></a>
+</h2>
+<ul>
+<li><a href="https://bbg.org/" class="external-link">Brooklyn Botanic Garden</a></li>
+</ul>
+</div>
 </div>
   </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
@@ -90,7 +149,14 @@
 </ul>
 </div>
 
-
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://github.com/erictleung/bbggplots/actions" class="external-link"><img src="https://github.com/erictleung/bbggplots/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
+<li><a href="https://img.shields.io/cran/l/pixarfilms" class="external-link"><img src="https://img.shields.io/cran/l/pixarfilms" alt="License CC0"></a></li>
+<li><a href="https://project-types.github.io/#toy" class="external-link"><img src="https://img.shields.io/badge/project%20type-toy-blue" alt="Project Type Toy Badge"></a></li>
+</ul>
+</div>
 
   </aside>
 </div>
