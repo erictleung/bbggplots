@@ -38,10 +38,14 @@ NULL
 #' @param name string for what color information to gather
 #'
 #' @source \url{https://www.bbg.org/collections/cherries}
+#'
+#' @importFrom ggplot2 ggplot
+#' @importFrom ggplot2 aes
+#' @importFrom ggplot2 geom_point
 #' @examples
 #' bbgcolors("all")
 #'
-#' library(ggplot2)
+#' require(ggplot2)
 #' ggplot(iris, aes(Sepal.Length, Sepal.Width)) +
 #'     geom_point(color = bbgcolors("first"))
 bbgcolors <- function(name) {

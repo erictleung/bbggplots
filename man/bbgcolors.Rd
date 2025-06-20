@@ -28,7 +28,7 @@ Values can be any of the following:
 \examples{
 bbgcolors("all")
 
-library(ggplot2)
+require(ggplot2)
 ggplot(iris, aes(Sepal.Length, Sepal.Width)) +
     geom_point(color = bbgcolors("first"))
 }
