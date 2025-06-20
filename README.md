@@ -5,8 +5,8 @@
 
 <!-- badges: start -->
 
-[![R build
-status](https://github.com/erictleung/bbggplots/workflows/R-CMD-check/badge.svg)](https://github.com/erictleung/bbggplots/actions)
+[![R Build
+Status](https://github.com/erictleung/bbggplots/actions/workflows/R-CMD-check.yml/badge.svg)](https://github.com/erictleung/bbggplots/actions/workflows/R-CMD-check.yml)
 [![License
 CC0](https://img.shields.io/cran/l/pixarfilms)](https://img.shields.io/cran/l/pixarfilms)
 [![Project Type Toy
