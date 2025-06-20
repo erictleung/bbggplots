@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
 [![Project Type Toy Badge](https://img.shields.io/badge/project%20type-toy-blue)](https://project-types.github.io/#toy)
 <!-- badges: end -->
 
-> R data package to explore the cheery blossoms at the Brooklyn Botanic Garden
+> R data package to explore the cherry blossoms at the Brooklyn Botanic Garden
 
 ## Installation
 

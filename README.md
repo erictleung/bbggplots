@@ -13,7 +13,7 @@ CC0](https://img.shields.io/cran/l/pixarfilms)](https://img.shields.io/cran/l/pi
 Badge](https://img.shields.io/badge/project%20type-toy-blue)](https://project-types.github.io/#toy)
 <!-- badges: end -->
 
-> R data package to explore the cheery blossoms at the Brooklyn Botanic
+> R data package to explore the cherry blossoms at the Brooklyn Botanic
 > Garden
 
 ## Installation
