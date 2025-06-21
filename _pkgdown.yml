@@ -6,9 +6,9 @@ template:
   bootswatch: flatly
   ganalytics: UA-66130577-1
   bslib:
-    bg: "#FFFFFF"
+    # bg: "#A6CE39"
     fg: "#F58025"
-    primary: "#5091CD"
+    # primary: "#5091CD"
 
 navbar:
   title: "bbggplots"
