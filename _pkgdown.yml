@@ -2,9 +2,13 @@ url: https://erictleung.com/bbggplots, https://github.com/erictleung/bbggplots
 
 template:
   bootstrap: 5
-  params:
-    bootswatch: flatly
-    ganalytics: UA-66130577-1
+  light-switch: true
+  bootswatch: flatly
+  ganalytics: UA-66130577-1
+  bslib:
+    bg: "#A6CE39"
+    fg: "#F58025"
+    primary: "#5091CD"
 
 navbar:
   title: "bbggplots"
