@@ -5,3 +5,4 @@ README.Rmd
 _pkgdown.yml
 data-raw/
 .github/
+^vignettes/articles$
