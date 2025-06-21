@@ -6,7 +6,7 @@ template:
   bootswatch: flatly
   ganalytics: UA-66130577-1
   bslib:
-    bg: "#A6CE39"
+    bg: "#FFFFFF"
     fg: "#F58025"
     primary: "#5091CD"
 
