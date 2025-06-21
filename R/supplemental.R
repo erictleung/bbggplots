@@ -55,12 +55,26 @@ bbgcolors <- function(name) {
   peak_bloom <- "#CD9CC7"
   postpeak_bloom <- "#007647"
 
+  # Colors for Brooklyn Botanic Garden logo
+  bbg_green <- "#A6CE39"
+  bbg_orange <- "#F58025"
+  bbg_blue <- "#5091CD"
+  bbg_brown <- "#8C7A6E"
+
   opts <- c(
     "all",
-    "bloom0", "pre", "prebloom",
-    "bloom1", "first", "first_bloom",
-    "bloom2", "peak", "peak_bloom",
-    "bloom3", "post", "postpeak_bloom"
+    "bloom0",
+    "pre",
+    "prebloom",
+    "bloom1",
+    "first",
+    "first_bloom",
+    "bloom2",
+    "peak",
+    "peak_bloom",
+    "bloom3",
+    "post",
+    "postpeak_bloom"
   )
   if (!name %in% opts) {
     stop("Invalid name.")
@@ -103,16 +117,15 @@ print.palette <- function(x, ...) {
   )
 
   graphics::rect(0,
-    0.9,
-    n + 1,
-    1.1,
-    col = grDevices::rgb(1, 1, 1, 0.8),
-    border = NA
-  )
+                 0.9,
+                 n + 1,
+                 1.1,
+                 col = grDevices::rgb(1, 1, 1, 0.8),
+                 border = NA)
   graphics::text((n + 1) / 2,
-    1,
-    labels = attr(x, "name"),
-    cex = 1,
-    col = "#32373D"
+                 1,
+                 labels = attr(x, "name"),
+                 cex = 1,
+                 col = "#32373D"
   )
 }
