@@ -123,13 +123,18 @@ new_records <-
 
 # Get all the data to see over time ----
 
-new_records <-
-  new_records %>%
-  select(date, tree, id, bloom) %>%
-  left_join(records %>%
-            distinct(alt, tree, id),
-        by = join_by(tree, id)) %>%
-  select(date, alt, tree, id, bloom)
+if (exists("records")) {
+  # Join with previous list of records if they exist
+  new_records <-
+    new_records %>%
+    select(date, alt, tree, id, bloom) %>%
+    left_join(records, by = join_by(tree, id)) %>%
+    select(date, alt, tree, id, bloom)
+} else {
+  new_records <-
+    new_records %>%
+    select(date, alt, tree, id, bloom)
+}
 
 # Basic checks before joining
 dim(new_records) # Should be 152 (sometimes 151)
