@@ -95,13 +95,15 @@ new_records <-
     delim = " ",
     names = c("tree", "location", "bloom", "tooltip")
   ) %>%
-  mutate(bloom = case_when(
-    bloom == "bloom0" ~ "Prebloom",
-    bloom == "bloom1" ~ "First Bloom",
-    bloom == "bloom2" ~ "Peak Bloom",
-    bloom == "bloom3" ~ "Post-Peak Bloom",
-    TRUE ~ "N/A"
-  )) %>%
+  mutate(
+    bloom = case_when(
+      bloom == "bloom0" ~ "Prebloom",
+      bloom == "bloom1" ~ "First Bloom",
+      bloom == "bloom2" ~ "Peak Bloom",
+      bloom == "bloom3" ~ "Post-Peak Bloom",
+      TRUE ~ "N/A"
+    )
+  ) %>%
   separate_wider_regex(
     cols = tree,
     patterns = c(tree = "^[a-z_]*_", id = "[0-9]*$")
