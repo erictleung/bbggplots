@@ -2,7 +2,6 @@
 # Usage: Rscript pull_live_data.R
 # https://www.bbg.org/collections/cherries
 
-
 # Setup ----
 
 # Web
@@ -33,19 +32,23 @@ data_file <- here("data-raw", glue("bbg_tree_bloom_{year}.csv"))
 message("Reading in records so far.")
 message("Looking for: ", data_file)
 if (file.exists(data_file)) {
+  message("Previous records found!")
   records <- read_csv(data_file)
 } else {
+  message("No records found, so creating new data frame!")
   records <- data.frame()
 }
 
 # Scrape website ----
 
 # Get live webpage and let JavaScript code load elements
-message("Reading HTML from Brooklyn Botanic Garden's website..."
+message("Reading HTML from Brooklyn Botanic Garden's website...")
 flowers <- read_html_live("https://www.bbg.org/collections/cherries")
 
 message(glue("Current date: {date}"))
-message(glue("{html_text(html_elements(flowers, 'figcaption'))} <- Should be same"))
+message(glue(
+  "{html_text(html_elements(flowers, 'figcaption'))} <- Should be same"
+))
 
 
 # Parse results ----
