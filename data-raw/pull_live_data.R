@@ -35,8 +35,7 @@ if (file.exists(data_file)) {
   message("Previous records found!")
   records <- read_csv(data_file)
 } else {
-  message("No records found, so creating new data frame!")
-  records <- data.frame()
+  message("No records found!")
 }
 
 # Scrape website ----
