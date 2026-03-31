@@ -116,6 +116,10 @@ new_records <-
   ) %>%
   select(tree, id, bloom, date)
 
+# Adds metadata to trees
+new_records <-
+  new_records %>%
+  left_join(df_flowers_meta, by = join_by(tree, id))
 
 # Get all the data to see over time ----
 
