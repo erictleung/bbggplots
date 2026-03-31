@@ -137,9 +137,11 @@ if (exists("records")) {
 
 # Basic checks before joining
 dim(new_records) # Should be 152 (sometimes 151)
-dim(records)
-unique(records$date) # Check that it should be days up until yesterday
-records %>% count(alt, tree, id) %>% count(n) # Check counts for days
+if (exists("records")) {
+  dim(records)
+  unique(records$date) # Check that it should be days up until yesterday
+  records %>% count(alt, tree, id) %>% count(n) # Check counts for days
+}
 
 # Add to existing data if there exists a file
 if (exists("records")) {
