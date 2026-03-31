@@ -61,6 +61,31 @@ df_flowers <-
   map(html_attrs) %>%
   map_df(~ as.list(.))
 
+# Get metadata and names for trees
+df_flowers_meta <-
+  flowers %>%
+  html_elements("div.tooltip-content") %>%
+  map(\(x) {
+    data.frame(
+      # Grab alt name
+      alt = x %>%
+        html_element("h4") %>%
+        html_text2(),
+
+      # Grab unique identifier
+      tree = x %>%
+        html_attr("id") %>%
+        stringr::str_remove("_[0-9]+-tooltip"),
+
+      # Grab unique identifier
+      id = x %>%
+        html_attr("id") %>%
+        stringr::str_extract("[0-9]+") %>%
+        as.integer()
+    )
+  }) %>%
+  list_rbind()
+
 # Pre-process data
 bloom_lvls <- c("Prebloom", "First Bloom", "Peak Bloom", "Post-Peak Bloom")
 new_records <-
