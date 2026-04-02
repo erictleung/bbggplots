@@ -52,15 +52,17 @@ message(glue(
 
 # Parse results ----
 
-message("Get all annotated trees and form them into a nice data frame")
+message("Getting all annotated trees and form them into a nice data frame...")
 # Inspiration: https://stackoverflow.com/a/34513555/2468369
 df_flowers <-
   flowers %>%
   html_nodes("span.location") %>%
   map(html_attrs) %>%
   map_df(~ as.list(.))
+message("Done!")
 
 # Get metadata and names for trees
+message("Getting flowers metadata...")
 df_flowers_meta <-
   flowers %>%
   html_elements("div.tooltip-content") %>%
@@ -84,8 +86,10 @@ df_flowers_meta <-
     )
   }) %>%
   list_rbind()
+message("Done!")
 
 # Pre-process data
+message("Wrangling bloom data...")
 bloom_lvls <- c("Prebloom", "First Bloom", "Peak Bloom", "Post-Peak Bloom")
 new_records <-
   df_flowers %>%
@@ -114,8 +118,10 @@ new_records <-
     bloom = bloom %>% fct_expand(bloom_lvls) %>% fct_relevel(bloom_lvls),
   ) %>%
   select(tree, id, bloom, date)
+message("Done!")
 
 # Adds metadata to trees
+message("Adding metadata to flower data and rearranging columns...")
 new_records <-
   new_records %>%
   left_join(df_flowers_meta, by = join_by(tree, id))
