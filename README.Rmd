@@ -40,7 +40,7 @@ bbgdata
 
 You can find information about the data sets and more
 [here](https://erictleung.com/bbggplots/).
-And , a list of vignettes showcasing some analyses you can do with this package
+And, a list of vignettes showcasing some analyses you can do with this package
 can be found [here](https://erictleung.com/bbggplots/articles/).
 
 
@@ -52,6 +52,7 @@ Here are direct links to each data set.
 
 ```
 https://raw.githubusercontent.com/erictleung/bbggplots/main/data-raw/bbg_tree_bloom_2025.csv
+https://raw.githubusercontent.com/erictleung/bbggplots/main/data-raw/bbg_tree_bloom_2026.csv
 ```
 
 ## Feedback
