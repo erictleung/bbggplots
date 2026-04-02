@@ -7,3 +7,4 @@ data-raw/
 .github/
 ^vignettes/articles$
 assets/
+^cran-comments\.md$
