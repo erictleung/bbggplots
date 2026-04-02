@@ -16,7 +16,7 @@ remotes::install_github("erictleung/bbggplots")
 ``` r
 library(bbggplots)
 bbgdata
-#> # A tibble: 3,328 × 5
+#> # A tibble: 3,781 × 5
 #>    date       alt                                  tree                id bloom 
 #>    <date>     <chr>                                <chr>            <dbl> <chr> 
 #>  1 2025-04-14 Prunus ‘Taki-nioi’                   taki_nioi          163 First…
@@ -29,13 +29,13 @@ bbgdata
 #>  8 2025-04-14 Prunus × sieboldii                   sieboldii          161 First…
 #>  9 2025-04-14 Prunus ‘Fudan-zakura’                fudan_zakura       107 Post-…
 #> 10 2025-04-14 Prunus ‘Shirotae’                    shirotae           153 First…
-#> # ℹ 3,318 more rows
+#> # ℹ 3,771 more rows
 ```
 
 ## Documentation
 
 You can find information about the data sets and more
-[here](https://erictleung.com/bbggplots/). And , a list of vignettes
+[here](https://erictleung.com/bbggplots/). And, a list of vignettes
 showcasing some analyses you can do with this package can be found
 [here](https://erictleung.com/bbggplots/articles/).
 
@@ -47,6 +47,7 @@ Here are direct links to each data set.
 
 ``` R
 https://raw.githubusercontent.com/erictleung/bbggplots/main/data-raw/bbg_tree_bloom_2025.csv
+https://raw.githubusercontent.com/erictleung/bbggplots/main/data-raw/bbg_tree_bloom_2026.csv
 ```
 
 ## Feedback
