@@ -1,5 +1,5 @@
 # Pull live data from the Brooklyn Botanical Garden
-# Rscript combined_and_save.R
+# Rscript data-raw/combined_and_save.R
 # https://www.bbg.org/collections/cherries
 
 # Setup ----
