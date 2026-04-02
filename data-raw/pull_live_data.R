@@ -124,29 +124,18 @@ message("Done!")
 message("Adding metadata to flower data and rearranging columns...")
 new_records <-
   new_records %>%
-  left_join(df_flowers_meta, by = join_by(tree, id))
+  left_join(df_flowers_meta, by = join_by(tree, id)) %>%
+  select(date, alt, tree, id, bloom)
+message("Done!")
 
 # Get all the data to see over time ----
-
-if (exists("records")) {
-  # Join with previous list of records if they exist
-  new_records <-
-    new_records %>%
-    select(date, alt, tree, id, bloom) %>%
-    left_join(records, by = join_by(tree, id)) %>%
-    select(date, alt, tree, id, bloom)
-} else {
-  new_records <-
-    new_records %>%
-    select(date, alt, tree, id, bloom)
-}
 
 # Basic checks before joining
 dim(new_records) # Should be 152 (sometimes 151)
 if (exists("records")) {
-  dim(records)
-  unique(records$date) # Check that it should be days up until yesterday
-  records %>% count(alt, tree, id) %>% count(n) # Check counts for days
+  print(dim(records))
+  print(unique(records$date)) # Check that it should be days up until yesterday
+  print(records %>% count(alt, tree, id) %>% count(n)) # Check counts for days
 }
 
 # Add to existing data if there exists a file
