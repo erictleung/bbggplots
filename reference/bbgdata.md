@@ -46,7 +46,7 @@ blossom trees that the official website shows.
 
 ``` r
 bbgdata
-#> # A tibble: 4,235 × 5
+#> # A tibble: 4,387 × 5
 #>    date       alt                                  tree             id    bloom 
 #>    <date>     <chr>                                <chr>            <chr> <chr> 
 #>  1 2025-04-14 Prunus ‘Taki-nioi’                   taki_nioi        163   First…
@@ -59,5 +59,5 @@ bbgdata
 #>  8 2025-04-14 Prunus × sieboldii                   sieboldii        161   First…
 #>  9 2025-04-14 Prunus ‘Fudan-zakura’                fudan_zakura     107   Post-…
 #> 10 2025-04-14 Prunus ‘Shirotae’                    shirotae         153   First…
-#> # ℹ 4,225 more rows
+#> # ℹ 4,377 more rows
 ```
