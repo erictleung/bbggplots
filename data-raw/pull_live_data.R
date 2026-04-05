@@ -109,12 +109,12 @@ new_records <-
   ) %>%
   separate_wider_regex(
     cols = tree,
-    patterns = c(tree = "^[a-z_]*_", id = "[0-9]*$")
+    patterns = c(tree = "^[a-z_]*_", id = "[0-9-]*$")
   ) %>%
   mutate(
     tree = str_remove(tree, pattern = regex("_$")),
     date = date,
-    id = as.integer(id),
+    id = as.character(id),
     bloom = bloom %>% fct_expand(bloom_lvls) %>% fct_relevel(bloom_lvls),
   ) %>%
   select(tree, id, bloom, date)
