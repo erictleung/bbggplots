@@ -20,7 +20,17 @@ library(purrr)
 bbgdata <- here("data-raw") |>
   list.files(pattern = "bbg_tree_bloom") |>
   map_chr(\(x) str_c("data-raw/", x)) |>
-  map_dfr(read_csv)
+  map(
+    read_csv,
+    col_types = list(
+      date = col_date(),
+      alt = col_character(),
+      tree = col_character(),
+      id = col_character(),
+      bloom = col_character()
+    )
+  ) |>
+  list_rbind()
 
 # Checks
 unique(bbgdata$date)
