@@ -152,6 +152,20 @@ print(glue("{unique(records$date)}"))
 message(glue("Current date: {date} <-- Should be last date"))
 
 
+# TEMP ----
+
+# Add in tree information for new tree
+records <-
+  records |>
+  mutate(
+    alt = if_else(
+      id == "81-2026",
+      "Prunus pendula ‘Pendula plena rosea’",
+      alt
+    )
+  )
+
+
 # Write out results ----
 
 write_csv(x = records, file = data_file)
