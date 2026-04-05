@@ -34,20 +34,24 @@ print(date <- Sys.Date())
 # Webpages ----
 # https://web.archive.org/web/20240513105238/https://www.bbg.org/collections/cherries
 
-
 # Scrape website ----
 # Get archived webpages and let JavaScript code load elements
-flowers <- read_html_live("https://web.archive.org/web/20240513105238/https://www.bbg.org/collections/cherries")
+url <- "https://web.archive.org/web/20160317064133/https://www.bbg.org/collections/cherries"
+flowers <- read_html_live(url)
 
 message(glue("Current date: {date}"))
-message(glue("{html_text(html_elements(flowers, 'figcaption'))} <- Should be same"))
+message(glue(
+  "{html_text(html_elements(flowers, 'figcaption'))} <- Should be same"
+))
 
 # Parse results ----
 message("Get all annotated trees and form them into a nice data frame")
 # Inspiration: https://stackoverflow.com/a/34513555/2468369
 df_flowers <-
   flowers %>%
-  html_nodes("span.location") %>%
+  # html_nodes("span.location") %>%
+  html_element("div#cherrymap") |>
+  html_elements("a") |>
   map(html_attrs) %>%
   map_df(~ as.list(.))
 
@@ -58,15 +62,18 @@ new_records <-
   separate_wider_delim(
     cols = class,
     delim = " ",
-    names = c("tree", "location", "bloom", "tooltip")
+    # names = c("tree", "location", "bloom", "tooltip")
+    names = c("tree", "location", "bloom")
   ) %>%
-  mutate(bloom = case_when(
-    bloom == "bloom0" ~ "Prebloom",
-    bloom == "bloom1" ~ "First Bloom",
-    bloom == "bloom2" ~ "Peak Bloom",
-    bloom == "bloom3" ~ "Post-Peak Bloom",
-    TRUE ~ "N/A"
-  )) %>%
+  mutate(
+    bloom = case_when(
+      bloom == "bloom0" ~ "Prebloom",
+      bloom == "bloom1" ~ "First Bloom",
+      bloom == "bloom2" ~ "Peak Bloom",
+      bloom == "bloom3" ~ "Post-Peak Bloom",
+      TRUE ~ "N/A"
+    )
+  ) %>%
   separate_wider_regex(
     cols = tree,
     patterns = c(tree = "^[a-z_]*_", id = "[0-9]*$")
