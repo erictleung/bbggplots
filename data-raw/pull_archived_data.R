@@ -32,6 +32,10 @@ urls <- list(
   list(
     date = "2016-03-18",
     url = "https://web.archive.org/web/20160319000709/https://www.bbg.org/collections/cherries"
+  ),
+  list(
+    date = "2016-03-24",
+    url = "https://web.archive.org/web/20160324145416/https://www.bbg.org/collections/cherries"
   )
 )
 
@@ -171,6 +175,14 @@ if (exists("records")) {
 }
 message("Unique dates now:")
 print(glue("{unique(records$date)}"))
+message("Check on changes in bloom status...")
+print(
+  records |>
+    group_by(date, bloom) |>
+    count() |>
+    pivot_wider(id_cols = date, values_from = n, names_from = bloom) |>
+    janitor::clean_names()
+)
 
 
 # Write out results ----
