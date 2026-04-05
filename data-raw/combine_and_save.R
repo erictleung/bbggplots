@@ -34,6 +34,11 @@ bbgdata <- here("data-raw") |>
 
 # Checks
 unique(bbgdata$date)
+dim(bbgdata)
+bbgdata |>
+  mutate(year = year(date)) |>
+  count(year) |>
+  arrange(year)
 
 # Save out data ----
 
