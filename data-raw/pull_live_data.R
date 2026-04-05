@@ -124,7 +124,10 @@ message("Done!")
 message("Adding metadata to flower data and rearranging columns...")
 new_records <-
   new_records %>%
-  left_join(df_flowers_meta, by = join_by(tree, id)) %>%
+  left_join(
+    df_flowers_meta |> mutate(id = as.character(id)),
+    by = join_by(tree, id)
+  ) %>%
   select(date, alt, tree, id, bloom)
 message("Done!")
 
@@ -140,7 +143,7 @@ if (exists("records")) {
 
 # Add to existing data if there exists a file
 if (exists("records")) {
-  records <- bind_rows(records, new_records)
+  records <- bind_rows(records |> mutate(id = as.character(id)), new_records)
 } else {
   records <- new_records
 }
