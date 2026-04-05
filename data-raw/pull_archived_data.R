@@ -23,33 +23,54 @@ library(lubridate)
 
 # Read current records -----
 
-url <- "https://web.archive.org/web/20160317064133/https://www.bbg.org/collections/cherries"
-archived_date <- "2016-03-16"
+# Keep a log of all the archived pages for reference
+urls <- list(
+  list(
+    date = "2016-03-16",
+    url = "https://web.archive.org/web/20160317064133/https://www.bbg.org/collections/cherries"
+  ),
+  list(
+    date = "2016-03-18",
+    url = "https://web.archive.org/web/20160319000709/https://www.bbg.org/collections/cherries"
+  )
+)
+
+# Look at latest archived link above
+archived_date <- urls[[length(urls)]]$date
+url <- urls[[length(urls)]]$url
 year <- year(archived_date)
 
+print(glue("Looking at {archived_date} and adding to {year} data"))
+
 # Read in records so far
-message("Reading in records so far.")
+message(glue("Reading in records so far for {year}..."))
 archived_file <- here("data-raw", glue("bbg_tree_bloom_{year}.csv"))
 if (file.exists(archived_file)) {
-  records <- read_csv(archived_file)
+  message("Data found!")
+  records <- read_csv(
+    archived_file,
+    col_types = list(
+      date = col_date(),
+      alt = col_character(),
+      tree = col_character(),
+      id = col_character(),
+      bloom = col_character()
+    )
+  )
 } else {
   message("No records found!")
 }
 
-print(date <- Sys.Date())
-
-
-# Webpages ----
-# https://web.archive.org/web/20240513105238/https://www.bbg.org/collections/cherries
 
 # Scrape website ----
 
 # Get archived webpages and let JavaScript code load elements
+# b <- ChromoteSession$new()
+# b$go_to(url)
 flowers <- read_html_live(url)
-
-message(glue("Current date: {date}"))
 message(glue(
-  "{html_text(html_elements(flowers, 'figcaption'))} <- Should be same"
+  # "{html_text(html_elements(flowers, 'figcaption'))}"
+  '{flowers |> html_elements("footnote") |> html_text() |> stringr::str_trim()}'
 ))
 
 # Parse results ----
@@ -62,6 +83,8 @@ df_flowers <-
   html_elements("a") |>
   map(html_attrs) %>%
   map_df(~ as.list(.))
+message("Taking a peak of the data pulled so far...")
+print(df_flowers)
 
 # Pre-process data
 message("Wrangling bloom data...")
@@ -116,9 +139,14 @@ live_trees <-
 message("Adding metadata to flower data and rearranging columns...")
 new_records <-
   new_records |>
-  mutate(id = as.character(id)) |>
+  mutate(
+    id = as.character(id),
+    date = as.Date(date),
+    bloom = as.character(bloom)
+  ) |>
   left_join(live_trees, by = join_by(tree, id)) |>
   select(date, alt, tree, id, bloom)
+print(new_records)
 message("Done!")
 
 
@@ -143,7 +171,6 @@ if (exists("records")) {
 }
 message("Unique dates now:")
 print(glue("{unique(records$date)}"))
-message(glue("Current date: {date} <-- Should be last date"))
 
 
 # Write out results ----
