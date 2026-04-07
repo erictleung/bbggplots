@@ -50,7 +50,7 @@ whether someone saved the page (i.e., there can be missing data).
 
 ``` r
 bbgdata
-#> # A tibble: 4,846 × 5
+#> # A tibble: 4,998 × 5
 #>    date       alt                        tree              id    bloom   
 #>    <date>     <chr>                      <chr>             <chr> <chr>   
 #>  1 2016-03-16 Prunus ‘Kanzan’            kanzan            50    Prebloom
@@ -63,5 +63,5 @@ bbgdata
 #>  8 2016-03-16 Prunus × yedoensis         yedoensis         156   Prebloom
 #>  9 2016-03-16 Prunus ‘Ariake’            ariake            154   Prebloom
 #> 10 2016-03-16 Prunus ‘Shirotae’          shirotae          153   Prebloom
-#> # ℹ 4,836 more rows
+#> # ℹ 4,988 more rows
 ```
