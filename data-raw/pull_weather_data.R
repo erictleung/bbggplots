@@ -1,6 +1,8 @@
+# Load libraries -----
 library(rjson)
 library(stringr)
 
+# Setup ----
 url <- "https://archive-api.open-meteo.com/v1/archive?"
 coordinates <- "latitude=40.669247&longitude=-73.964357"
 start <- "&start_date=2026-03-17"
@@ -9,6 +11,8 @@ metrics <- "&daily=temperature_2m_max,temperature_2m_min,apparent_temperature_ma
 units <- "&wind_speed_unit=mph&temperature_unit=fahrenheit&precipitation_unit=inch"
 tz <- "&timezone=America%2FNew_York"
 
+
+# Join URL together
 json_file <- str_c(
   url,
   coordinates,
@@ -19,6 +23,8 @@ json_file <- str_c(
   tz
 )
 
+
+# Pull in data and format into a data frame
 json_data <-
   json_file |>
   readLines() |>
