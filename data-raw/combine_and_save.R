@@ -1,5 +1,5 @@
 # Pull live data from the Brooklyn Botanical Garden
-# Rscript data-raw/combined_and_save.R
+# Rscript combined_and_save.R
 # https://www.bbg.org/collections/cherries
 
 # Setup ----
@@ -20,7 +20,7 @@ library(lubridate)
 # Read all data all at once
 bbgdata <- here("data-raw") |>
   list.files(pattern = "bbg_tree_bloom") |>
-  map_chr(\(x) str_c("data-raw/", x)) |>
+  # map_chr(\(x) str_c("data-raw/", x)) |>
   map(
     read_csv,
     col_types = list(
