@@ -42,6 +42,7 @@ if (file.exists(data_file)) {
 
 # Get live webpage and let JavaScript code load elements
 message("Reading HTML from Brooklyn Botanic Garden's website...")
+message("Note: if fails because Chromote timed out, simply try again.")
 flowers <- read_html_live("https://www.bbg.org/collections/cherries")
 Sys.sleep(3)
 message("Completed!")
