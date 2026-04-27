@@ -1,7 +1,12 @@
 # Load libraries -----
 library(rjson)
+library(here)
+library(readr)
 library(stringr)
 library(glue)
+library(dplyr)
+library(magrittr)
+library(httr2)
 
 # STRING WORKS
 # https://archive-api.open-meteo.com/v1/archive?latitude=40.669247&longitude=-73.964357&start_date=2026-03-17&end_date=2026-03-31&daily=temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,sunrise,sunset,daylight_duration,sunshine_duration,uv_index_max,rain_sum,showers_sum,uv_index_clear_sky_max,snowfall_sum,precipitation_sum,wind_speed_10m_max,wind_gusts_10m_max,wind_direction_10m_dominant&timezone=America/New_York&wind_speed_unit=mph&temperature_unit=fahrenheit&precipitation_unit=inch
