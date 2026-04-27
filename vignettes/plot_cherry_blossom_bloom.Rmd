@@ -1,0 +1,83 @@
+---
+title: Plot cherry blossom bloom statuses
+---
+
+```{r}
+library(bbggplots)
+library(dplyr)
+library(ggplot2)
+library(ggsvg)
+library(ggpubr)
+
+# microbenchmark
+# nloptr
+# doBy
+# lme4
+# pbkrtest
+# car
+# rstatix
+# ggpubr
+```
+
+```{r}
+firstbloom_svg <-
+    system.file("extdata", "cherry-firstbloom.svg", package="bbggplots") |>
+    readLines(warn = FALSE) |>
+    paste(collapse = "\n")
+peakbloom_svg <-
+    system.file("extdata", "cherry-peakbloom.svg", package="bbggplots") |>
+    readLines(warn = FALSE) |>
+    paste(collapse = "\n")
+postbloom_svg <-
+    system.file("extdata", "cherry-postbloom.svg", package="bbggplots") |>
+    readLines(warn = FALSE) |>
+    paste(collapse = "\n")
+prebloom_svg <-
+    system.file("extdata", "cherry-prebloom.svg", package="bbggplots") |>
+    readLines(warn = FALSE) |>
+    paste(collapse = "\n")
+bg <-
+    system.file("extdata", "cherrymap.gif", package="bbggplots") |>
+    read.gif()
+```
+
+```{r}
+grid::grid.draw(svg_to_rasterGrob(firstbloom_svg))
+```
+
+```{r}
+grid::grid.draw(svg_to_rasterGrob(peakbloom_svg))
+```
+
+```{r}
+grid::grid.draw(svg_to_rasterGrob(postbloom_svg))
+```
+
+```{r}
+grid::grid.draw(svg_to_rasterGrob(prebloom_svg))
+```
+
+```{r}
+icons_df <- data.frame(
+  bloom = c('Prebloom', 'First Bloom', 'Peak Bloom', 'Post Bloom'),
+  svg  = c( prebloom_svg, firstbloom_svg, peakbloom_svg, postbloom_svg),
+  stringsAsFactors = FALSE
+)
+```
+
+```{r}
+bbgdata |>
+    filter(date == "2025-04-14") |>
+    mutate(id = as.character(id)) |>
+    left_join(treepositions, by = join_by(tree == tree, id == id)) |>
+    merge(icons_df) |>
+    ggplot() +
+    geom_point_svg(
+        aes(x = left, y = -top, svg = I(svg)),
+        size = 10
+    ) + 
+    labs(
+        title = "{ggsvg} multiple SVG images"
+    ) + 
+    theme_bw()
+```
