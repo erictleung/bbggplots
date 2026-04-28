@@ -28,8 +28,8 @@ prebloom_svg <-
     readLines(warn = FALSE) |>
     paste(collapse = "\n")
 bg <-
-    system.file("extdata", "cherrymap.gif", package="bbggplots") |>
-    read.gif()
+    system.file("extdata", "cherrymap.png", package="bbggplots") |>
+    png::readPNG()   
 ```
 
 ```{r}
@@ -63,12 +63,18 @@ bbgdata |>
     left_join(treepositions, by = join_by(tree == tree, id == id)) |>
     merge(icons_df) |>
     ggplot() +
+    background_image(bg) +
     geom_point_svg(
         aes(x = left, y = -top, svg = I(svg)),
-        size = 10
+        size = 7.5
     ) + 
-    labs(
-        title = "{ggsvg} multiple SVG images"
-    ) + 
-    theme_bw()
+    # scale_x_continuous(expand = c(0, 0)) +
+    # scale_y_continuous(expand = c(0, 0)) +
+    scale_x_continuous(limits = c(0, 100)) +
+    scale_y_continuous(limits = c(0, -100)) +
+    # scale_y_reverse() + 
+    scale_x_continuous(position = "top") +
+    # Maintain 1:1 ratio and allow drawing outside limits
+    coord_fixed(clip = "off")
+    theme_minimal()
 ```
