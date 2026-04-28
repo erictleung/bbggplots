@@ -9,10 +9,6 @@ library(ggplot2)
 library(ggsvg)
 library(ggpubr)
 
-# microbenchmark
-# nloptr
-# doBy
-# lme4
 # pbkrtest
 # car
 # rstatix
