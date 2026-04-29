@@ -16,12 +16,12 @@ BugReports: https://github.com/erictleung/bbggplots/issues
 Depends: 
     R (>= 3.5)
 Imports: 
+    ggplot2,
     knitr,
     rmarkdown,
     tibble
 Suggests:
     dplyr,
-    ggplot2,
     ggpubr,
     ggsvg,
     png
