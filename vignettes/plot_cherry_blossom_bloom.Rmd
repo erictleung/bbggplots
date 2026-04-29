@@ -1,9 +1,11 @@
 ---
-title: Plot cherry blossom bloom statuses
+title: "Plot cherry blossom bloom statuses"
 author: Eric Leung
+description: |
+    This vignette demonstrates how to use the `bbggplots` package to visualize the bloom statuses of cherry trees in the Brooklyn Botanic Garden. We will use custom SVG icons to represent different bloom stages and plot them on a map of the garden.
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteIndexEntry{Plot cherry blossom bloom statuses}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -62,15 +64,16 @@ icons_df <- data.frame(
 )
 ```
 
-```{r, fig.width=550px, fig.height=498px}
+```{r}
 p_size <- 5
+bg_dim <- dim(bg)
 bbgdata |>
     filter(date == "2025-04-14") |>
     mutate(id = as.character(id)) |>
     left_join(treepositions, by = join_by(tree == tree, id == id)) |>
     mutate(
-        x = (left / 100 * bg_dim[2]) + p_size/2,
-        y = (-top / 100 * bg_dim[1]) - p_size/2
+        x = (left / 100 * bg_dim[2]) + p_size,
+        y = (-top / 100 * bg_dim[1]) - p_size
     ) |>
     merge(icons_df) |>
     ggplot() +

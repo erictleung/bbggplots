@@ -46,12 +46,16 @@ plot_map <- function(date) {
     stringsAsFactors = FALSE
   )
 
+  # Set up parameters for plotting
   p_size <- 5
-  bbgdata |>
+  bg_dim <- dim(bg)
+
+  # Plot the garden map!
+  bbggplots::bbgdata |>
     dplyr::filter(date == {{ date }}) |>
     dplyr::mutate(id = as.character(id)) |>
     dplyr::left_join(
-      treepositions,
+      bbggplots::treepositions,
       by = dplyr::join_by(tree == tree, id == id)
     ) |>
     dplyr::mutate(
