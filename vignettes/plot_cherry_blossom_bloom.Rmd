@@ -35,7 +35,7 @@ prebloom_svg <-
     paste(collapse = "\n")
 bg <-
     system.file("extdata", "cherrymap.png", package="bbggplots") |>
-    png::readPNG()   
+    png::readPNG()
 ```
 
 ```{r}
