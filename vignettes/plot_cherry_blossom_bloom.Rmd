@@ -1,5 +1,11 @@
 ---
 title: Plot cherry blossom bloom statuses
+author: Eric Leung
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r}
@@ -56,24 +62,31 @@ icons_df <- data.frame(
 )
 ```
 
-```{r}
+```{r, fig.width=550px, fig.height=498px}
+p_size <- 5
 bbgdata |>
     filter(date == "2025-04-14") |>
     mutate(id = as.character(id)) |>
     left_join(treepositions, by = join_by(tree == tree, id == id)) |>
+    mutate(
+        x = (left / 100 * bg_dim[2]) + p_size/2,
+        y = (-top / 100 * bg_dim[1]) - p_size/2
+    ) |>
     merge(icons_df) |>
     ggplot() +
     background_image(bg) +
     geom_point_svg(
-        aes(x = left, y = -top, svg = I(svg)),
-        size = 7.5
+        aes(x = x, y = y, svg = I(svg)),
+        size = p_size
     ) + 
-    # scale_x_continuous(expand = c(0, 0)) +
-    # scale_y_continuous(expand = c(0, 0)) +
-    scale_x_continuous(limits = c(0, 100)) +
-    scale_y_continuous(limits = c(0, -100)) +
-    # scale_y_reverse() + 
-    scale_x_continuous(position = "top") +
+    scale_x_continuous(
+        expand = c(0, 0),
+        limits = c(0, 550)
+    ) +
+    scale_y_continuous(
+        expand = c(0, 0),
+        limits = c(0, -498)
+    ) +
     # Maintain 1:1 ratio and allow drawing outside limits
     coord_fixed(clip = "off")
     theme_minimal()
