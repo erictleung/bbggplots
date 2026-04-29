@@ -16,14 +16,15 @@ BugReports: https://github.com/erictleung/bbggplots/issues
 Depends: 
     R (>= 3.5)
 Imports: 
+    knitr,
+    rmarkdown,
+    tibble
+Suggests:
     dplyr,
     ggplot2,
     ggpubr,
     ggsvg,
-    knitr,
-    png,
-    rmarkdown,
-    tibble
+    png
 VignetteBuilder: 
     knitr
 Encoding: UTF-8
