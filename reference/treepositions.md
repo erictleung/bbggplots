@@ -44,7 +44,7 @@ A data frame with 151 rows and 6 variables:
 
 ``` r
 treepositions
-#> # A tibble: 153 × 6
+#> # A tibble: 154 × 6
 #>    id_full              tree             id      style                 top  left
 #>    <chr>                <chr>            <chr>   <chr>               <dbl> <dbl>
 #>  1 pendula_82           pendula          82      position: absolute…  21.5  3.27
@@ -57,5 +57,5 @@ treepositions
 #>  8 shogetsu_140         shogetsu         140     position: absolute…  80.3 69.4 
 #>  9 sieboldii_161        sieboldii        161     position: absolute…  38.2 58.2 
 #> 10 yae_beni_shidare_126 yae_beni_shidare 126     position: absolute…  13.6 75.1 
-#> # ℹ 143 more rows
+#> # ℹ 144 more rows
 ```
