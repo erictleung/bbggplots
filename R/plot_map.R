@@ -7,14 +7,16 @@
 #'
 #' @return A ggplot object.
 #'
+#' @importFrom rlang .data
+#'
 #' @examples
 #' plot_map()
 #' plot_map(as.Date("2025-04-14"))
 #' @export
 plot_map <- function(date) {
   if (missing(date)) {
-    date <- max(bbgdata$date)
-  } else if (!date %in% bbgdata$date) {
+    date <- max(bbggplots::bbgdata$date)
+  } else if (!date %in% bbggplots::bbgdata$date) {
     stop("Date not found in data.")
   }
 
@@ -53,20 +55,20 @@ plot_map <- function(date) {
   # Plot the garden map!
   bbggplots::bbgdata |>
     dplyr::filter(date == {{ date }}) |>
-    dplyr::mutate(id = as.character(id)) |>
+    dplyr::mutate(id = as.character(.data$id)) |>
     dplyr::left_join(
       bbggplots::treepositions,
-      by = dplyr::join_by(tree == tree, id == id)
+      by = c("tree", "id")
     ) |>
     dplyr::mutate(
-      x = (left / 100 * bg_dim[2]) + p_size,
-      y = (-top / 100 * bg_dim[1]) - p_size
+      x = (.data$left / 100 * bg_dim[2]) + p_size,
+      y = (-.data$top / 100 * bg_dim[1]) - p_size
     ) |>
     merge(icons_df) |>
     ggplot2::ggplot() +
     ggpubr::background_image(bg) +
     ggsvg::geom_point_svg(
-      aes(x = x, y = y, svg = I(svg)),
+      aes(x = .data$x, y = .data$y, svg = I(.data$svg)),
       size = p_size
     ) +
     ggplot2::scale_x_continuous(

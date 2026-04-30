@@ -19,13 +19,14 @@ Remotes:
     github::coolbutuseless/ggsvg
 Imports: 
     ggplot2,
-    knitr,
-    rmarkdown,
+    rlang,
     tibble
 Suggests:
     dplyr,
     ggpubr,
     ggsvg,
+    knitr,
+    rmarkdown,
     png
 VignetteBuilder: 
     knitr
