@@ -10,6 +10,10 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+This vignette demonstrates how to use the `bbggplots` package to visualize the bloom statuses of cherry trees in the Brooklyn Botanic Garden. We will use custom SVG icons to represent different bloom stages and plot them on a map of the garden.
+
+This effectively is the code behind the `plot_map()` function, but here we will show how to do it step by step, and how to customize the plot further if desired.
+
 ```{r}
 library(bbggplots)
 library(dplyr)
@@ -17,6 +21,8 @@ library(ggplot2)
 library(ggsvg)
 library(ggpubr)
 ```
+
+Each of the bloom stages (prebloom, first bloom, peak bloom, post bloom) has a corresponding SVG icon included in the package. We will read these SVG files into R and store them in a data frame for easy access.
 
 ```{r}
 firstbloom_svg <-
@@ -40,6 +46,8 @@ bg <-
     png::readPNG()
 ```
 
+Now, we will create a data frame that maps each bloom stage to its corresponding SVG icon. This will allow us to easily merge this information with our tree data later on.
+
 ```{r}
 icons_df <- data.frame(
   bloom = c('Prebloom', 'First Bloom', 'Peak Bloom', 'Post Bloom'),
@@ -47,6 +55,8 @@ icons_df <- data.frame(
   stringsAsFactors = FALSE
 )
 ```
+
+And then finally, we can create the plot by filtering the data for a specific date, merging it with the tree positions and the icons, and then plotting it using `ggplot2` with the background image of the garden map.
 
 ```{r}
 p_size <- 5
@@ -77,4 +87,8 @@ bbgdata |>
     # Maintain 1:1 ratio and allow drawing outside limits
     coord_fixed(clip = "off") +
     theme_minimal()
+```
+
+```{r}
+sessionInfo()
 ```
