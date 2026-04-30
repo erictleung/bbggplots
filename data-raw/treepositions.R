@@ -52,4 +52,6 @@ treepositions <-
 
 write_csv(treepositions, file = here("data-raw/bbg_flower_positions.csv"))
 
+# Manual read and write to package data if needed
+# treepositions <- readr::read_csv(here::here("data-raw/bbg_flower_positions.csv"))
 usethis::use_data(treepositions, overwrite = TRUE)
