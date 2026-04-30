@@ -17,6 +17,9 @@ reference:
   - title: Blossom data
     contents:
     - bbgdata
+  - title: Map data
+    contents:
+    - plot_map
   - title: Supplemental data
     contents:
     - treepositions
