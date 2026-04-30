@@ -21,16 +21,14 @@ plot_map <- function(date) {
     all_dates <-
       bbgdata$date |>
       unique() |>
-      lubridate::ymd()
+      as.Date()
 
-    diff_dates <- all_dates - lubridate::ymd({{ date }})
+    diff_dates <- all_dates - as.Date({{ date }})
 
-    closest_date <-
-      diff_dates |>
-      abs() |>
-      min()
+    closest_suggestion <- all_dates[which(
+      abs(diff_dates) == min(abs(diff_dates))
+    )]
 
-    closest_suggestion <- lubridate::ymd({{ date }}) + closest_date
     stop(
       "Try another date like ",
       closest_suggestion,
