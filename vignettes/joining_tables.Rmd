@@ -1,0 +1,39 @@
+---
+title: "Joining tables together"
+author: Eric Leung
+description: |
+    This vignette demonstrates how to join tables together using the `dplyr` package. We will use the `bbgdata` and `treepositions` data frames from the `bbggplots` package to show how to merge information about the trees' bloom statuses with their spatial positions in the garden.
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Joining tables together}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+This vignette demonstrates how to join tables together using the `dplyr` package. We will use the `bbgdata` and `treepositions` data frames from the `bbggplots` package to show how to merge information about the trees' bloom statuses with their spatial positions in the garden.
+
+```{r setup}
+library(bbggplots)
+```
+
+Here, we can pull data for 2025-04-14, which is the date of peak bloom for the cherry trees in that year. We will then join this data with the `treepositions` data frame to get the spatial coordinates of each tree.
+
+```{r}
+bbgdata |>
+    filter(date == "2025-04-14") |>
+    mutate(id = as.character(id)) |>
+    left_join(treepositions, by = join_by(tree == tree, id == id))
+```
+
+Note, each of the tree positions here, which are encoded in the `top` and `left` columns, are in percentage coordinates corresponding to the background image of the garden map. Moreover, `top` here maps to the inverted y-axis (meaning positive values should be plotted with the negative complement to visualize normally) and `left` maps to the x-axis, which is a common convention for plotting images in R. This is something to keep in mind when plotting the data later on.
+
+```{r}
+sessionInfo()
+```
