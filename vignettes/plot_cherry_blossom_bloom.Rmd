@@ -41,22 +41,6 @@ bg <-
 ```
 
 ```{r}
-grid::grid.draw(svg_to_rasterGrob(firstbloom_svg))
-```
-
-```{r}
-grid::grid.draw(svg_to_rasterGrob(peakbloom_svg))
-```
-
-```{r}
-grid::grid.draw(svg_to_rasterGrob(postbloom_svg))
-```
-
-```{r}
-grid::grid.draw(svg_to_rasterGrob(prebloom_svg))
-```
-
-```{r}
 icons_df <- data.frame(
   bloom = c('Prebloom', 'First Bloom', 'Peak Bloom', 'Post Bloom'),
   svg  = c( prebloom_svg, firstbloom_svg, peakbloom_svg, postbloom_svg),
@@ -91,6 +75,6 @@ bbgdata |>
         limits = c(0, -498)
     ) +
     # Maintain 1:1 ratio and allow drawing outside limits
-    coord_fixed(clip = "off")
+    coord_fixed(clip = "off") +
     theme_minimal()
 ```
