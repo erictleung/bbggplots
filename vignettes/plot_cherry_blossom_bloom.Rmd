@@ -10,6 +10,13 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
 This vignette demonstrates how to use the `bbggplots` package to visualize the bloom statuses of cherry trees in the Brooklyn Botanic Garden. We will use custom SVG icons to represent different bloom stages and plot them on a map of the garden.
 
 This effectively is the code behind the `plot_map()` function, but here we will show how to do it step by step, and how to customize the plot further if desired.
