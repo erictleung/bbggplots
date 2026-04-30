@@ -10,16 +10,23 @@
 #' @importFrom rlang .data
 #'
 #' @examples
+#' # Base example to plot the most recent date in the data
 #' plot_map()
-#' plot_map("2025-04-14")  # Plot a specific date with data
-#' plot_map("2025-01-01")  # This will throw an error since the date is not in the data
+#'
+#' # Plot a specific date with data
+#' plot_map("2025-04-14")
+#'
+#' \dontrun{
+#' # This will throw an error since the date is not in the data
+#' plot_map("2025-01-01")
+#' }
 #' @export
 plot_map <- function(date) {
   if (missing(date)) {
     date <- max(bbggplots::bbgdata$date)
   } else if (!date %in% bbggplots::bbgdata$date) {
     all_dates <-
-      bbgdata$date |>
+      bbggplots::bbgdata$date |>
       unique() |>
       as.Date()
 
