@@ -20,7 +20,8 @@ provided, defaults to the most recent date in the data."></head><body>
       <ul class="navbar-nav me-auto"><li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/plot_cherry_blossom_bloom.html">Plot cherry blossom bloom statuses</a></li>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/joining_tables.html">Joining tables together</a></li>
+    <li><a class="dropdown-item" href="../articles/plot_cherry_blossom_bloom.html">Plot cherry blossom bloom statuses</a></li>
   </ul></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
@@ -71,8 +72,10 @@ provided, defaults to the most recent date in the data.</p>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">plot_map</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="plot_map-1.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span><span class="fu">plot_map</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2025-04-14"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">plot_map</span><span class="op">(</span><span class="st">"2025-04-14"</span><span class="op">)</span>  <span class="co"># Plot a specific date with data</span></span></span>
 <span class="r-plt img"><img src="plot_map-2.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span><span class="fu">plot_map</span><span class="op">(</span><span class="st">"2025-01-01"</span><span class="op">)</span>  <span class="co"># This will throw an error since the date is not in the data</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in plot_map("2025-01-01"):</span> Try another date like 2025-04-14 or use plot_map() to plot the most recent date.</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

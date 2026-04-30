@@ -15,21 +15,45 @@ remotes::install_github("erictleung/bbggplots")
 
 ``` r
 library(bbggplots)
+
 bbgdata
-#> # A tibble: 3,781 × 5
-#>    date       alt                                  tree                id bloom 
-#>    <date>     <chr>                                <chr>            <dbl> <chr> 
-#>  1 2025-04-14 Prunus ‘Taki-nioi’                   taki_nioi          163 First…
-#>  2 2025-04-14 Prunus pendula ‘Pendula Rosea ’      pendula            128 Peak …
-#>  3 2025-04-14 Prunus pendula ‘Pendula Plena Rosea’ yae_beni_shidare   126 Peak …
-#>  4 2025-04-14 Prunus × sieboldii                   sieboldii          160 First…
-#>  5 2025-04-14 Prunus ‘Hata-zakura’                 hatazakura         106 First…
-#>  6 2025-04-14 Prunus ‘Ariake’                      ariake             154 First…
-#>  7 2025-04-14 Prunus ‘Ukon’                        ukon               162 Prebl…
-#>  8 2025-04-14 Prunus × sieboldii                   sieboldii          161 First…
-#>  9 2025-04-14 Prunus ‘Fudan-zakura’                fudan_zakura       107 Post-…
-#> 10 2025-04-14 Prunus ‘Shirotae’                    shirotae           153 First…
-#> # ℹ 3,771 more rows
+#> # A tibble: 8,190 × 5
+#>    date       alt                        tree              id    bloom   
+#>    <date>     <chr>                      <chr>             <chr> <chr>   
+#>  1 2016-03-16 Prunus ‘Kanzan’            kanzan            50    Prebloom
+#>  2 2016-03-16 Prunus ‘Snow Goose’        prunus_snow_goose 147   Prebloom
+#>  3 2016-03-16 Prunus × sieboldii         sieboldii         161   Prebloom
+#>  4 2016-03-16 Prunus × sieboldii         sieboldii         160   Prebloom
+#>  5 2016-03-16 Prunus × subhirtella       subhirtella       159   Prebloom
+#>  6 2016-03-16 Prunus ‘Ukon’              ukon              158   Prebloom
+#>  7 2016-03-16 Prunus serrulata ‘Horinji’ horinji           157   Prebloom
+#>  8 2016-03-16 Prunus × yedoensis         yedoensis         156   Prebloom
+#>  9 2016-03-16 Prunus ‘Ariake’            ariake            154   Prebloom
+#> 10 2016-03-16 Prunus ‘Shirotae’          shirotae          153   Prebloom
+#> # ℹ 8,180 more rows
+```
+
+``` r
+library(dplyr)
+#> 
+#> Attaching package: 'dplyr'
+#> The following objects are masked from 'package:stats':
+#> 
+#>     filter, lag
+#> The following objects are masked from 'package:base':
+#> 
+#>     intersect, setdiff, setequal, union
+
+bbgdata |>
+  mutate(year = substr(date, 1, 4)) |>
+  count(year) |>
+  arrange(year)
+#> # A tibble: 3 × 2
+#>   year      n
+#>   <chr> <int>
+#> 1 2016    459
+#> 2 2025   3328
+#> 3 2026   4403
 ```
 
 ## Documentation
@@ -88,6 +112,14 @@ By contributing to this project, you agree to abide by its terms.
 # Articles
 
 ### All vignettes
+
+- [Joining tables together](articles/joining_tables.md):
+
+  This vignette demonstrates how to join tables together using the
+  `dplyr` package. We will use the `bbgdata` and `treepositions` data
+  frames from the `bbggplots` package to show how to merge information
+  about the trees’ bloom statuses with their spatial positions in the
+  garden.
 
 - [Plot cherry blossom bloom
   statuses](articles/plot_cherry_blossom_bloom.md):
