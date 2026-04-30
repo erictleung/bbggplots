@@ -21,6 +21,7 @@ This vignette demonstrates how to join tables together using the `dplyr` package
 
 ```{r setup}
 library(bbggplots)
+library(dplyr)
 ```
 
 Here, we can pull data for 2025-04-14, which is the date of peak bloom for the cherry trees in that year. We will then join this data with the `treepositions` data frame to get the spatial coordinates of each tree.
