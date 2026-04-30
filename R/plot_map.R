@@ -11,13 +11,31 @@
 #'
 #' @examples
 #' plot_map()
-#' plot_map(as.Date("2025-04-14"))
+#' plot_map("2025-04-14")  # Plot a specific date with data
+#' plot_map("2025-01-01")  # This will throw an error since the date is not in the data
 #' @export
 plot_map <- function(date) {
   if (missing(date)) {
     date <- max(bbggplots::bbgdata$date)
   } else if (!date %in% bbggplots::bbgdata$date) {
-    stop("Date not found in data.")
+    all_dates <-
+      bbgdata$date |>
+      unique() |>
+      lubridate::ymd()
+
+    diff_dates <- all_dates - lubridate::ymd({{ date }})
+
+    closest_date <-
+      diff_dates |>
+      abs() |>
+      min()
+
+    closest_suggestion <- lubridate::ymd({{ date }}) + closest_date
+    stop(
+      "Try another date like ",
+      closest_suggestion,
+      " or use plot_map() to plot the most recent date."
+    )
   }
 
   # Get SVGs and background image
