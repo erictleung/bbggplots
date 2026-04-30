@@ -22,10 +22,16 @@ A ggplot object.
 ## Examples
 
 ``` r
+# Base example to plot the most recent date in the data
 plot_map()
 
-plot_map("2025-04-14")  # Plot a specific date with data
 
-plot_map("2025-01-01")  # This will throw an error since the date is not in the data
-#> Error in plot_map("2025-01-01"): Try another date like 2025-04-14 or use plot_map() to plot the most recent date.
+# Plot a specific date with data
+plot_map("2025-04-14")
+
+
+if (FALSE) { # \dontrun{
+# This will throw an error since the date is not in the data
+plot_map("2025-01-01")
+} # }
 ```
