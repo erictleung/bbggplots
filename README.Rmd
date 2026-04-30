@@ -33,7 +33,17 @@ remotes::install_github("erictleung/bbggplots")
 
 ```{r}
 library(bbggplots)
+
 bbgdata
+```
+
+```{r}
+library(dplyr)
+
+bbgdata |>
+  mutate(year = substr(date, 1, 4)) |>
+  count(year) |>
+  arrange(year)
 ```
 
 ## Documentation
