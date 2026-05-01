@@ -8,12 +8,14 @@
 You can install the development version of `bbggplots` from GitHub with:
 
 ``` r
+
 remotes::install_github("erictleung/bbggplots")
 ```
 
 ## Example
 
 ``` r
+
 library(bbggplots)
 
 bbgdata
@@ -34,6 +36,7 @@ bbgdata
 ```
 
 ``` r
+
 library(dplyr)
 #> 
 #> Attaching package: 'dplyr'

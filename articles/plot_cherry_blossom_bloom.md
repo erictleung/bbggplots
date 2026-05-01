@@ -11,6 +11,7 @@ how to do it step by step, and how to customize the plot further if
 desired.
 
 ``` r
+
 library(bbggplots)
 library(dplyr)
 #> 
@@ -31,6 +32,7 @@ has a corresponding SVG icon included in the package. We will read these
 SVG files into R and store them in a data frame for easy access.
 
 ``` r
+
 firstbloom_svg <-
     system.file("extdata", "cherry-firstbloom.svg", package="bbggplots") |>
     readLines(warn = FALSE) |>
@@ -57,6 +59,7 @@ corresponding SVG icon. This will allow us to easily merge this
 information with our tree data later on.
 
 ``` r
+
 icons_df <- data.frame(
   bloom = c('Prebloom', 'First Bloom', 'Peak Bloom', 'Post Bloom'),
   svg  = c( prebloom_svg, firstbloom_svg, peakbloom_svg, postbloom_svg),
@@ -70,6 +73,7 @@ then plotting it using `ggplot2` with the background image of the garden
 map.
 
 ``` r
+
 p_size <- 5
 bg_dim <- dim(bg)
 bbgdata |>
@@ -103,6 +107,7 @@ bbgdata |>
 ![](plot_cherry_blossom_bloom_files/figure-html/unnamed-chunk-5-1.png)
 
 ``` r
+
 sessionInfo()
 #> R version 4.6.0 (2026-04-24)
 #> Platform: x86_64-pc-linux-gnu

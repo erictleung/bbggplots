@@ -6,6 +6,7 @@ the `bbggplots` package to show how to merge information about the
 trees’ bloom statuses with their spatial positions in the garden.
 
 ``` r
+
 library(bbggplots)
 library(dplyr)
 #> 
@@ -23,6 +24,7 @@ for the cherry trees in that year. We will then join this data with the
 `treepositions` data frame to get the spatial coordinates of each tree.
 
 ``` r
+
 bbgdata |>
     filter(date == "2025-04-14") |>
     mutate(id = as.character(id)) |>
@@ -52,6 +54,7 @@ x-axis, which is a common convention for plotting images in R. This is
 something to keep in mind when plotting the data later on.
 
 ``` r
+
 sessionInfo()
 #> R version 4.6.0 (2026-04-24)
 #> Platform: x86_64-pc-linux-gnu
