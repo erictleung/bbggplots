@@ -36,6 +36,10 @@ urls <- list(
   list(
     date = "2016-03-24",
     url = "https://web.archive.org/web/20160324145416/https://www.bbg.org/collections/cherries"
+  ),
+  list(
+    date = "2016-03-26",
+    url = "https://web.archive.org/web/20160328084212/https://www.bbg.org/collections/cherries"
   )
 )
 
@@ -81,11 +85,12 @@ message(glue(
 message("Get all annotated trees and form them into a nice data frame")
 # Inspiration: https://stackoverflow.com/a/34513555/2468369
 df_flowers <-
-  flowers %>%
-  # html_nodes("span.location") %>%
+  flowers |>
+  # html_nodes("span.location") |>
   html_element("div#cherrymap") |>
-  html_elements("a") |>
-  map(html_attrs) %>%
+  # html_elements("a") |>
+  html_elements("span") |>
+  map(html_attrs) |>
   map_df(~ as.list(.))
 message("Taking a peak of the data pulled so far...")
 print(df_flowers)
@@ -98,8 +103,8 @@ new_records <-
   separate_wider_delim(
     cols = class,
     delim = " ",
-    # names = c("tree", "location", "bloom", "tooltip")
-    names = c("tree", "location", "bloom")
+    names = c("tree", "location", "bloom", "tooltip")
+    # names = c("tree", "location", "bloom")
   ) %>%
   mutate(
     bloom = case_when(
