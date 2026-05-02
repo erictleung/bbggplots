@@ -54,25 +54,29 @@ if (file.exists(archived_file)) {
 
 # Parse results ----
 message("Get all annotated trees and form them into a nice data frame")
-# Inspiration: https://stackoverflow.com/a/34513555/2468369
-df_flowers <-
-  here("data-raw", glue("cherries_{archived_date}.json")) |>
-  read_json(simplifyVector = TRUE) |>
-  as.data.frame()
-colnames(df_flowers) <- c(
-  "id",
-  "tree_name_html",
-  "alt",
-  "tree",
-  "tree_id",
-  "x",
-  "y",
-  "bloom",
-  "tooltip_img",
-  "full_image"
-)
-message("Taking a peak of the data pulled so far...")
-print(df_flowers)
+in_file <- here("data-raw", glue("cherries_{archived_date}.json"))
+if (file.exists(in_file)) {
+  df_flowers <-
+    in_file |>
+    read_json(simplifyVector = TRUE) |>
+    as.data.frame()
+  colnames(df_flowers) <- c(
+    "id",
+    "tree_name_html",
+    "alt",
+    "tree",
+    "tree_id",
+    "x",
+    "y",
+    "bloom",
+    "tooltip_img",
+    "full_image"
+  )
+  message("Taking a peak of the data pulled so far...")
+  print(df_flowers)
+} else {
+  message("No records found!")
+}
 
 # Pre-process data
 message("Wrangling bloom data...")
