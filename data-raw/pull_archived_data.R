@@ -24,52 +24,14 @@ library(lubridate)
 # Read current records -----
 
 # Keep a log of all the archived pages for reference
-urls <- list(
-  list(
-    date = "2016-03-16",
-    url = "https://web.archive.org/web/20160317064133/https://www.bbg.org/collections/cherries"
-  ),
-  list(
-    date = "2016-03-18",
-    url = "https://web.archive.org/web/20160319000709/https://www.bbg.org/collections/cherries"
-  ),
-  list(
-    date = "2016-03-24",
-    url = "https://web.archive.org/web/20160324145416/https://www.bbg.org/collections/cherries"
-  ),
-  list(
-    date = "2016-03-26",
-    url = "https://web.archive.org/web/20160328084212/https://www.bbg.org/collections/cherries"
-  ),
-  list(
-    date = "2016-03-29",
-    url = "https://web.archive.org/web/20160330054149/https://www.bbg.org/collections/cherries"
-  ),
-  list(
-    date = "2016-03-31",
-    url = "https://web.archive.org/web/20160331180404/https://www.bbg.org/collections/cherries"
-  ),
-  list(
-    date = "2016-04-01",
-    url = "https://web.archive.org/web/20160403200531/https://www.bbg.org/collections/cherries"
-  ),
-  list(
-    date = "2016-04-08",
-    url = "https://web.archive.org/web/20160408190954/https://www.bbg.org/collections/cherries"
-  ),
-  list(
-    date = "2016-04-12",
-    url = "https://web.archive.org/web/20160413034235/https://www.bbg.org/collections/cherries"
-  ),
-  list(
-    date = "2016-04-15",
-    url = "https://web.archive.org/web/20160418110550/https://www.bbg.org/collections/cherries"
-  )
-)
+urls <-
+  "data-raw/archive.json" |>
+  readLines() |>
+  fromJSON() |>
+  as.data.frame()
 
 # Look at latest archived link above
-archived_date <- urls[[length(urls)]]$date
-url <- urls[[length(urls)]]$url
+archived_date <- last(urls)$date
 year <- year(archived_date)
 
 print(glue("Looking at {archived_date} and adding to {year} data"))
@@ -94,30 +56,25 @@ if (file.exists(archived_file)) {
   message("No records found!")
 }
 
-
-# Scrape website ----
-
-# Get archived webpages and let JavaScript code load elements
-# b <- ChromoteSession$new()
-# b$go_to(url)
-flowers <- read_html_live(url)
-message(glue(
-  # "{html_text(html_elements(flowers, 'figcaption'))}"
-  '{flowers |> html_elements("footnote") |> html_text() |> stringr::str_trim()}'
-))
-message(glue("^Should match the date of the archived page: {archived_date}"))
-
 # Parse results ----
 message("Get all annotated trees and form them into a nice data frame")
 # Inspiration: https://stackoverflow.com/a/34513555/2468369
-df_flowers <-
-  flowers |>
-  # html_nodes("span.location") |>
-  html_element("div#cherrymap") |>
-  # html_elements("a") |>
-  html_elements("span") |>
-  map(html_attrs) |>
-  map_df(~ as.list(.))
+flowers <-
+  here("data-raw", glue("cherries_{archived_date}.json")) |>
+  read_json(simplifyVector = TRUE) |>
+  as.data.frame()
+colnames(flowers) <- c(
+  "id",
+  "tree_name",
+  "genus",
+  "species",
+  "tree_id",
+  "x",
+  "y",
+  "bloom",
+  "tooltip_img",
+  "full_image"
+)
 message("Taking a peak of the data pulled so far...")
 print(df_flowers)
 
@@ -223,3 +180,5 @@ print(
 # Write out results ----
 
 write_csv(x = records, file = archived_file)
+
+file.remove(here("data-raw", glue("cherries_{archived_date}.json")))
