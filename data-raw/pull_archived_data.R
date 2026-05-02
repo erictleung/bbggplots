@@ -44,6 +44,18 @@ urls <- list(
   list(
     date = "2016-03-29",
     url = "https://web.archive.org/web/20160330054149/https://www.bbg.org/collections/cherries"
+  ),
+  list(
+    date = "2016-03-31",
+    url = "https://web.archive.org/web/20160331180404/https://www.bbg.org/collections/cherries"
+  ),
+  list(
+    date = "2016-04-01",
+    url = "https://web.archive.org/web/20160403200531/https://www.bbg.org/collections/cherries"
+  ),
+  list(
+    date = "2016-04-08",
+    url = "https://web.archive.org/web/20160408190954/https://www.bbg.org/collections/cherries"
   )
 )
 
@@ -69,6 +81,7 @@ if (file.exists(archived_file)) {
       bloom = col_character()
     )
   )
+  print(records)
 } else {
   message("No records found!")
 }
@@ -148,6 +161,7 @@ live_trees <-
   live_records |>
   select(alt, tree, id) |>
   distinct()
+print(live_trees)
 
 # Add metadata to trees
 message("Adding metadata to flower data and rearranging columns...")
@@ -169,6 +183,7 @@ message("Done!")
 # Basic checks before joining
 dim(new_records) # Should be 152 (sometimes 151)
 if (exists("records")) {
+  message("Checking existing records...")
   print(dim(records))
   print(unique(records$date)) # Check that it should be days up until yesterday
   print(records %>% count(alt, tree, id) %>% count(n)) # Check counts for days
@@ -191,7 +206,8 @@ print(
     group_by(date, bloom) |>
     count() |>
     pivot_wider(id_cols = date, values_from = n, names_from = bloom) |>
-    janitor::clean_names()
+    janitor::clean_names() |>
+    select(date, prebloom, first_bloom, peak_bloom, post_peak_bloom)
 )
 
 
