@@ -3,10 +3,6 @@
 
 # Setup ----
 
-# Web
-library(rvest) # Easily Harvest (Scrape) Web Pages CRAN v1.0.4
-library(chromote) # Headless Chrome Web Browser Interface CRAN v0.5.0
-
 # Data wrangling
 library(dplyr) # A Grammar of Data Manipulation CRAN v1.1.4
 library(tidyr) # Tidy Messy Data CRAN v1.3.1
@@ -59,15 +55,15 @@ if (file.exists(archived_file)) {
 # Parse results ----
 message("Get all annotated trees and form them into a nice data frame")
 # Inspiration: https://stackoverflow.com/a/34513555/2468369
-flowers <-
+df_flowers <-
   here("data-raw", glue("cherries_{archived_date}.json")) |>
   read_json(simplifyVector = TRUE) |>
   as.data.frame()
-colnames(flowers) <- c(
+colnames(df_flowers) <- c(
   "id",
-  "tree_name",
-  "genus",
-  "species",
+  "tree_name_html",
+  "alt",
+  "tree",
   "tree_id",
   "x",
   "y",
@@ -80,65 +76,16 @@ print(df_flowers)
 
 # Pre-process data
 message("Wrangling bloom data...")
-bloom_lvls <- c("Prebloom", "First Bloom", "Peak Bloom", "Post-Peak Bloom")
 new_records <-
-  df_flowers %>%
-  separate_wider_delim(
-    cols = class,
-    delim = " ",
-    names = c("tree", "location", "bloom", "tooltip")
-    # names = c("tree", "location", "bloom")
-  ) %>%
+  df_flowers |>
   mutate(
-    bloom = case_when(
-      bloom == "bloom0" ~ "Prebloom",
-      bloom == "bloom1" ~ "First Bloom",
-      bloom == "bloom2" ~ "Peak Bloom",
-      bloom == "bloom3" ~ "Post-Peak Bloom",
-      TRUE ~ "N/A"
-    )
-  ) %>%
-  separate_wider_regex(
-    cols = tree,
-    patterns = c(tree = "^[a-z_]*_", id = "[0-9]*$")
-  ) %>%
-  mutate(
-    tree = str_remove(tree, pattern = regex("_$")),
-    date = archived_date,
-    id = as.integer(id),
-    bloom = bloom %>% fct_expand(bloom_lvls) %>% fct_relevel(bloom_lvls),
-  ) %>%
-  select(tree, id, bloom, date)
-print(new_records)
-message("Done!")
-
-
-# Augment live data to archived data ----
-
-# Pull in data from live feed to help augment archived data
-live_file <- here("data-raw", glue("bbg_tree_bloom_2026.csv"))
-if (file.exists(live_file)) {
-  message("Previous records found!")
-  live_records <- read_csv(live_file)
-} else {
-  message("No records found!")
-}
-live_trees <-
-  live_records |>
-  select(alt, tree, id) |>
-  distinct()
-print(live_trees)
-
-# Add metadata to trees
-message("Adding metadata to flower data and rearranging columns...")
-new_records <-
-  new_records |>
-  mutate(
+    date = as.Date(archived_date),
     id = as.character(id),
-    date = as.Date(date),
-    bloom = as.character(bloom)
+    bloom = bloom |> fct_expand(bloom_lvls) |> fct_relevel(bloom_lvls),
   ) |>
-  left_join(live_trees, by = join_by(tree, id)) |>
+  mutate(alt = str_remove_all(alt, "<em>")) |>
+  mutate(alt = str_remove_all(alt, "</em>")) |>
+  mutate(alt = str_replace(alt, "&#215;", "×")) |>
   select(date, alt, tree, id, bloom)
 print(new_records)
 message("Done!")
@@ -178,7 +125,8 @@ print(
     count() |>
     pivot_wider(id_cols = date, values_from = n, names_from = bloom) |>
     janitor::clean_names() |>
-    select(date, prebloom, first_bloom, peak_bloom, post_peak_bloom)
+    mutate(total = rowSums(across(where(is.numeric)), na.rm = TRUE)) |>
+    select(date, prebloom, first_bloom, peak_bloom, post_peak_bloom, total)
 )
 
 
