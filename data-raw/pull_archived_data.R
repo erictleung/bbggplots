@@ -129,8 +129,8 @@ print(
     count() |>
     pivot_wider(id_cols = date, values_from = n, names_from = bloom) |>
     janitor::clean_names() |>
-    mutate(total = rowSums(across(where(is.numeric)), na.rm = TRUE)) |>
-    select(date, prebloom, first_bloom, peak_bloom, post_peak_bloom, total)
+    mutate(total = rowSums(across(where(is.numeric)), na.rm = TRUE)) # |>
+  # select(date, prebloom, first_bloom, peak_bloom, post_peak_bloom, total)
 )
 
 
