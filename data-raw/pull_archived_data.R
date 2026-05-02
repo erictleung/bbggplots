@@ -143,6 +143,11 @@ new_records <-
 print(new_records)
 message("Done!")
 
+message("Checking any missing metadata...")
+new_records |>
+  filter(is.na(alt) | is.na(tree) | is.na(id)) |>
+  print()
+
 
 # Get all the data to see over time ----
 
