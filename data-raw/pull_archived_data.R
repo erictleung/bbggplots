@@ -60,6 +60,10 @@ urls <- list(
   list(
     date = "2016-04-12",
     url = "https://web.archive.org/web/20160413034235/https://www.bbg.org/collections/cherries"
+  ),
+  list(
+    date = "2016-04-15",
+    url = "https://web.archive.org/web/20160418110550/https://www.bbg.org/collections/cherries"
   )
 )
 
