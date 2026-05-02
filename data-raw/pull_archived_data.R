@@ -56,6 +56,10 @@ urls <- list(
   list(
     date = "2016-04-08",
     url = "https://web.archive.org/web/20160408190954/https://www.bbg.org/collections/cherries"
+  ),
+  list(
+    date = "2016-04-12",
+    url = "https://web.archive.org/web/20160413034235/https://www.bbg.org/collections/cherries"
   )
 )
 
@@ -97,6 +101,7 @@ message(glue(
   # "{html_text(html_elements(flowers, 'figcaption'))}"
   '{flowers |> html_elements("footnote") |> html_text() |> stringr::str_trim()}'
 ))
+message(glue("^Should match the date of the archived page: {archived_date}"))
 
 # Parse results ----
 message("Get all annotated trees and form them into a nice data frame")
@@ -143,8 +148,8 @@ new_records <-
     bloom = bloom %>% fct_expand(bloom_lvls) %>% fct_relevel(bloom_lvls),
   ) %>%
   select(tree, id, bloom, date)
-message("Done!")
 print(new_records)
+message("Done!")
 
 
 # Augment live data to archived data ----
