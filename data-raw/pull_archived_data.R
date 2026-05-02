@@ -40,6 +40,10 @@ urls <- list(
   list(
     date = "2016-03-26",
     url = "https://web.archive.org/web/20160328084212/https://www.bbg.org/collections/cherries"
+  ),
+  list(
+    date = "2016-03-29",
+    url = "https://web.archive.org/web/20160330054149/https://www.bbg.org/collections/cherries"
   )
 )
 
@@ -127,6 +131,7 @@ new_records <-
   ) %>%
   select(tree, id, bloom, date)
 message("Done!")
+print(new_records)
 
 
 # Augment live data to archived data ----
